@@ -21,5 +21,28 @@ public class Cell {
         row = r;
         col = c;
         this.reg = reg;
+        setPossibilitiesTrue();
+        
+        if (v != 0)
+            possibilities[v - 1] = false;
+    }
+    
+    public Cell()
+    {
+        
+    }
+    
+    public Cell(int r, int c, int reg)
+    {
+        row = r;
+        col = c;
+        this.reg = reg;
+        setPossibilitiesTrue();
+    }
+    
+    public final void setPossibilitiesTrue() {
+        for (int i = 0; i < 9; i++) {
+            possibilities[i] = true;
+        }
     }
 }
