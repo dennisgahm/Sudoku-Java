@@ -9,7 +9,7 @@ package com.mycompany.sudoku_solver;
  * @author dennisgahm
  */
 public class Board {
-    Cell[][] cells; 
+    public Cell[][] cells; 
     
     public Board(Cell[][] cells) {
         this.cells = cells;
@@ -93,11 +93,7 @@ public class Board {
     
     public Cell[] getRow(int i) {
         
-        Cell[] row = new Cell[9];
-        
-        System.arraycopy(cells[i], 0, row, 0, 8);
-        
-        return row;
+        return cells[i];
     }
     
     public Cell[] getCol(int i) {

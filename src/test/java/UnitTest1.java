@@ -52,6 +52,52 @@ public class UnitTest1 {
         assertEquals(board2.boardToString(), board.boardToString());
     }
     
+    
+    @Test
+    public void checkGetCol() {
+        
+        Board board = new Board("061304800000060514429085300000753082000008003000400001904531070250009000010807045");
+        String col0 = "004000920";
+        String col4 = "068500300";
+        
+        Cell[] cells0 = board.getCol(0);
+        Cell[] cells4 = board.getCol(4);
+        
+        String testCol0 = "";
+        String testCol4 = "";
+        for (int i = 0; i < 9; i++) {
+            testCol0 += cells0[i].value;
+            testCol4 += cells4[i].value;
+        }
+        
+        
+        assertEquals(col0, testCol0);
+        assertEquals(col4, testCol4);
+    }
+    
+    @Test
+    public void checkGetRow() {
+        
+        //col is actually row
+        Board board = new Board("061304800000060514429085300000753082000008003000400001904531070250009000010807045");
+        String col0 = "061304800";
+        String col4 = "000008003";
+        
+        Cell[] cells0 = board.getRow(0);
+        Cell[] cells4 = board.getRow(4);
+        
+        String testCol0 = "";
+        String testCol4 = "";
+        for (int i = 0; i < 9; i++) {
+            testCol0 += cells0[i].value;
+            testCol4 += cells4[i].value;
+        }
+        
+        
+        assertEquals(col0, testCol0);
+        assertEquals(col4, testCol4);
+    }
+    
     @Test
     public void checkRegion1() {
         Board board = new Board("061304800000060514429085300000753082000008003000400001904531070250009000010807045");
@@ -164,5 +210,29 @@ public class UnitTest1 {
         assertEquals(reg8, testReg8a);
     }
         
+    @Test
+    //check if getRow allows you to get a reference to the Cell and mutate the original board.
+    public void testMutation() {
+        Board board = new Board("061304800000060514429085300000753082000008003000400001904531070250009000010807045");
+        //061 304 800
+        //000 060 514
+        //429 085 300
         
+        //000 753 082
+        //000 008 003
+        //000 400 001
+        
+        //904 531 070
+        //250 009 000
+        //010 807 045
+        Cell[] cells = board.getRow(0);
+        cells[0].value = 9;
+        assertEquals(board.cells[0][0].value, 9);
+        
+        
+        cells = board.getCol(0);
+        cells[1].value = 5;
+        assertEquals(board.cells[1][0].value, 5);
+        
+    }
 }
