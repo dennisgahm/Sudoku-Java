@@ -234,5 +234,15 @@ public class UnitTest1 {
         cells[1].value = 5;
         assertEquals(board.cells[1][0].value, 5);
         
+        
+        cells = board.getRegion(0);
+        cells[1].value = 4;
+        assertEquals(board.cells[0][1].value, 4);
+        
+        
+        cells = board.getRegion2(0);
+        cells[2].value = 3;
+        assertEquals(board.cells[0][2].value, 3);
+        
     }
 }
