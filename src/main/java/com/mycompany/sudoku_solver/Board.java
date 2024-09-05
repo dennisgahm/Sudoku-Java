@@ -8,8 +8,13 @@ package com.mycompany.sudoku_solver;
  *
  * @author dennisgahm
  */
+<<<<<<< HEAD
 public class Board implements Comparable<Board> {
     Cell[][] cells; 
+=======
+public class Board {
+    public Cell[][] cells; 
+>>>>>>> 8aeafe335fde72bbd4c6e249516c19b433501388
     
     public Board(Cell[][] cells) {
         this.cells = cells;
@@ -98,6 +103,7 @@ public class Board implements Comparable<Board> {
         System.arraycopy(cells[i], 0, row, 0, 8);
         
         return row;
+        return cells[i];
     }
     
     public Cell[] getCol(int i) {
