@@ -102,7 +102,6 @@ public class Board {
         
         System.arraycopy(cells[i], 0, row, 0, 8);
         
-        return row;
         return cells[i];
     }
     
