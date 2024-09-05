@@ -9,7 +9,9 @@ import java.util.Queue;
 
 /**
  * The way A Star Search works:
- * When the search expands a node, 
+ * When the search expands a node, it has children
+ * The children are each given a heuristic evaluation value
+ * A priority queue organizes the children
  * 
  * 
  * @author dennisgahm

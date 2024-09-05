@@ -8,7 +8,7 @@ package com.mycompany.sudoku_solver;
  *
  * @author dennisgahm
  */
-public class Board {
+public class Board implements Comparable<Board> {
     Cell[][] cells; 
     
     public Board(Cell[][] cells) {
@@ -173,5 +173,13 @@ public class Board {
             }
         }
         return str;
+    }
+
+    //A*
+    @Override
+    public int compareTo(Board o) {
+        //Use Minimum Remaining Values or the other one
+        
+        
     }
 }
