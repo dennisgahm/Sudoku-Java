@@ -4,17 +4,32 @@
  */
 package com.mycompany.sudoku_solver;
 
+
 /**
  *
  * @author dennisgahm
  */
-<<<<<<< HEAD
-public class Board implements Comparable<Board> {
-    Cell[][] cells; 
-=======
 public class Board {
     public Cell[][] cells; 
->>>>>>> 8aeafe335fde72bbd4c6e249516c19b433501388
+    
+    //minimum remaining values
+    public Double evaluateHeuristic() {
+        double minimum = 100;
+        
+        for (int i = 0; i < 9; i++) {
+            for (int i2 = 0; i2 < 9; i2++) {
+                int count = 0;
+                for (int i3 = 0; i3 < 9; i3++) {
+                    if (cells[i][i2].possibilities[i3])
+                        count++;
+                }
+                if (minimum > count)
+                    minimum = count;
+            }
+        }
+        
+        return minimum;
+    }
     
     public Board(Cell[][] cells) {
         this.cells = cells;
@@ -180,11 +195,4 @@ public class Board {
         return str;
     }
 
-    //A*
-    @Override
-    public int compareTo(Board o) {
-        //Use Minimum Remaining Values or the other one
-        
-        
-    }
 }

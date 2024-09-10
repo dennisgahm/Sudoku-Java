@@ -5,6 +5,7 @@
 package com.mycompany.sudoku_solver;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Queue;
 public class AStarSearch {
     Board board;
     Board initialBoard;
-    Queue<Board> queue = new LinkedList<>();
+    PriorityQueue<Board> queue = new PriorityQueue<>(new BoardComparator());
     
     public AStarSearch(Board board) {
         this.board = board;
