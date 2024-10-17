@@ -4,12 +4,32 @@
  */
 package com.mycompany.sudoku_solver;
 
+
 /**
  *
  * @author dennisgahm
  */
 public class Board {
     public Cell[][] cells; 
+    
+    //minimum remaining values
+    public Double evaluateHeuristic() {
+        double minimum = 100;
+        
+        for (int i = 0; i < 9; i++) {
+            for (int i2 = 0; i2 < 9; i2++) {
+                int count = 0;
+                for (int i3 = 0; i3 < 9; i3++) {
+                    if (cells[i][i2].possibilities[i3])
+                        count++;
+                }
+                if (minimum > count)
+                    minimum = count;
+            }
+        }
+        
+        return minimum;
+    }
     
     public Board(Cell[][] cells) {
         this.cells = cells;
@@ -95,6 +115,10 @@ public class Board {
     
     public Cell[] getRow(int i) {
         
+        Cell[] row = new Cell[9];
+        
+        System.arraycopy(cells[i], 0, row, 0, 8);
+        
         return cells[i];
     }
     
@@ -172,4 +196,5 @@ public class Board {
         }
         return str;
     }
+
 }
