@@ -53,6 +53,8 @@ public class Board {
     public boolean IsSectionConsistent(Cell[] c) {
         boolean[] arr = new boolean[9];
         for (int i = 0; i < 9; i++) {
+            if (c[i].value == 0)
+                return false;
             arr[c[i].value - 1] = true;
         }
         

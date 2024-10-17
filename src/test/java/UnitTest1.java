@@ -245,4 +245,38 @@ public class UnitTest1 {
         assertEquals(board.cells[0][2].value, 3);
         
     }
+    
+        //061 304 800
+        //000 060 514
+        //429 085 300
+        
+        //000 753 082
+        //000 008 003
+        //000 400 001
+        
+        //904 531 070
+        //250 009 000
+        //010 807 045
+    
+    //check if row complete is checked correctly
+    @Test
+    //check if getRow allows you to get a reference to the Cell and mutate the original board.
+    public void testIsSectionConsistent() {
+        Board board = new Board("061304800000060514429085300000753082000008003000400001904531070250009000010807045");
+        
+        Cell[] cells = board.getRow(0);
+        cells[0].value = 2;
+        cells[4].value = 5;
+        cells[7].value = 7;
+        cells[8].value = 9;
+        
+        
+        
+        assertEquals(board.IsSectionConsistent(cells), true);
+        
+        cells[8].value = 7;
+        cells[7].value = 0;        
+        
+        assertEquals(board.IsSectionConsistent(cells), false);
+    }
 }
