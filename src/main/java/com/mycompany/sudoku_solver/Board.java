@@ -14,6 +14,7 @@ public class Board {
     
     //minimum remaining values
     public Double evaluateHeuristic() {
+        /*
         double minimum = 100;
         
         for (int i = 0; i < 9; i++) {
@@ -26,9 +27,18 @@ public class Board {
                 if (minimum > count)
                     minimum = count;
             }
+        }*/
+        double count = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int i2 = 0; i2 < 9; i2++) {
+                for (int i3 = 0; i3 < 9; i3++) {
+                    if (cells[i][i2].possibilities[i3])
+                        count++;
+                }
+            }
         }
         
-        return minimum;
+        return count;
     }
     
     public Board(Cell[][] cells) {
@@ -197,4 +207,51 @@ public class Board {
         return str;
     }
 
+    public void removePossibilities()
+    {
+        for (int i3 = 0; i3 < 9; i3++) {
+            Cell[] cells = this.getRow(i3);
+            for (int i = 0; i < 9; i++) {
+                if (cells[i].value != 0) {
+                    for (int i2 = 0; i2 < 9; i2++) {
+                        int value = cells[i].value;
+                        if (i != i2) {
+                            cells[i2].cant_be[value - 1] = true;
+                            cells[i2].possibilities[value - 1] = false;
+                        }
+                    }
+                }
+            }
+        }
+        
+        for (int i3 = 0; i3 < 9; i3++) {
+            Cell[] cells = this.getCol(i3);
+            for (int i = 0; i < 9; i++) {
+                if (cells[i].value != 0) {
+                    for (int i2 = 0; i2 < 9; i2++) {
+                        int value = cells[i].value;
+                        if (i != i2) {
+                            cells[i2].cant_be[value - 1] = true;
+                            cells[i2].possibilities[value - 1] = false;
+                        }
+                    }
+                }
+            }
+        }
+        
+        for (int i3 = 0; i3 < 9; i3++) {
+            Cell[] cells = this.getRegion(i3);
+            for (int i = 0; i < 9; i++) {
+                if (cells[i].value != 0) {
+                    for (int i2 = 0; i2 < 9; i2++) {
+                        int value = cells[i].value;
+                        if (i != i2) {
+                            cells[i2].cant_be[value - 1] = true;
+                            cells[i2].possibilities[value - 1] = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

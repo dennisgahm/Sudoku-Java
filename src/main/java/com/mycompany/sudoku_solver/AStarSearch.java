@@ -37,10 +37,17 @@ public class AStarSearch {
         
         boolean solved = false;
         Board expanded = null;
+        int count = 0;
         while (!solved) {
             expanded = expandNode();
+            count++;
+            if (count % 10000 == 0) 
+                System.out.println(count + "");
+            if (expanded != null)
+                System.out.println(expanded.boardToString());
+            
             if (expanded == null)
-                break;
+                continue;
             if (expanded.IsComplete())
                 solved = true;
         }
@@ -83,14 +90,47 @@ public class AStarSearch {
 //                }
                 
                 //Method 1:
+                //hack method
+                int row = -1;
+                int col = -1;
+                int numPossibilities = 100;
                 for (int i3 = 0; i3 < 9; i3++) {
-                    if (cell.possibilities[i3]) {
-                        cell.value = i3 + 1;
-                        queue.add(current);
-                        cellExpanded = true;
+                    for (int i4 = 0; i4 < 9; i4++) {
+                        Cell c1 = current.cells[i3][i4];
+                        if (c1.value != 0)
+                            continue;
+                        int count = 0;
+                        for (int i5 = 0; i5 < 9; i5++) {
+                            if (c1.possibilities[i5])
+                                count++;
+                        }
+                        
+                        if (count < numPossibilities) {
+                            row = i3;
+                            col = i4;
+                        }
                     }
-                    break;
                 }
+                
+                if (row != -1) {
+                    for (int i6 = 0; i6 < 9; i6++) {
+                        if (current.cells[row][col].possibilities[i6]) {
+                            
+                            current.cells[row][col].value = i6 + 1;
+                            current.cells[row][col].cant_be[i6] = true;
+                            current.cells[row][col].possibilities[i6] = false;
+                            
+
+                            //current.removePossibilities();
+                            queue.add(current);
+                            cellExpanded = true;
+                            break;
+                        }
+                    }
+                    
+                }
+                if (cellExpanded)
+                    break;
             }
         }
         

@@ -8,7 +8,7 @@ package com.mycompany.sudoku_solver;
  *
  * @author dennisgahm
  */
-public class Cell implements Comparable<Cell> {
+public class Cell {
     public boolean[] possibilities = new boolean[9];
     public boolean[] cant_be = new boolean[9];
     public int value = -1;
@@ -46,7 +46,7 @@ public class Cell implements Comparable<Cell> {
         }
     }
 
-    //A*
+    /*//A*
     @Override
     public int compareTo(Cell o) {
         int thisNumberOfPossibilities = 0;
@@ -54,5 +54,5 @@ public class Cell implements Comparable<Cell> {
             if (possibilities[i])
                 thisNumberOfPossibilities++;
         }
-    }
+    }*/
 }
