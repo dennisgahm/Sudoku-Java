@@ -28,7 +28,8 @@ public class Board {
                     minimum = count;
             }
         }*/
-        double count = 0;
+        /*double count = 0;
+        
         for (int i = 0; i < 9; i++) {
             for (int i2 = 0; i2 < 9; i2++) {
                 for (int i3 = 0; i3 < 9; i3++) {
@@ -36,8 +37,16 @@ public class Board {
                         count++;
                 }
             }
-        }
+        }*/
         
+        double count = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int i2 = 0; i2 < 9; i2++) {
+                    if (cells[i][i2].value == 0)
+                        count++;
+            }
+        }
+                
         return count;
     }
     

@@ -113,18 +113,24 @@ public class AStarSearch {
                 }
                 
                 if (row != -1) {
+                    
                     for (int i6 = 0; i6 < 9; i6++) {
-                        if (current.cells[row][col].possibilities[i6]) {
+                        Board clone = current.cloneBoard();
+                        if (clone.cells[row][col].possibilities[i6] && 
+                                !clone.cells[row][col].cant_be[i6]) {
                             
-                            current.cells[row][col].value = i6 + 1;
-                            current.cells[row][col].cant_be[i6] = true;
-                            current.cells[row][col].possibilities[i6] = false;
+                            clone.cells[row][col].value = i6 + 1;
+                            clone.cells[row][col].cant_be[i6] = true;
+                            clone.cells[row][col].possibilities[i6] = false;
                             
 
-                            //current.removePossibilities();
-                            queue.add(current);
+                            System.out.println("value: " + clone.cells[row][col].value);
+                            System.out.println("row: " + row);
+                            System.out.println("col: " + col);
+                            
+                            //clone.removePossibilities();
+                            queue.add(clone);
                             cellExpanded = true;
-                            break;
                         }
                     }
                     
