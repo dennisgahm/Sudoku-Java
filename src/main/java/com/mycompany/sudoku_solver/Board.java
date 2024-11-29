@@ -197,7 +197,10 @@ public class Board {
         Cell[][] cellsClone = new Cell[9][9];
         for (int i = 0; i < 9; i++) {
             for (int i2 = 0; i2 < 9; i2++) {
-                cellsClone[i][i2] = cells[i][i2];
+                //cellsClone[i][i2] = cells[i][i2];
+                Cell oldCell = cells[i][i2];
+                Cell newCell = new Cell(oldCell.value, oldCell.row, oldCell.col, oldCell.reg);
+                cellsClone[i][i2] = newCell;
             }
         }
         

@@ -4,6 +4,10 @@
 
 package com.mycompany.sudoku_solver;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 /**
  *
  * @author dennisgahm
@@ -11,6 +15,14 @@ package com.mycompany.sudoku_solver;
 public class Sudoku_Solver {
 
     public static void main(String[] args) {
+        /*
+        System.setErr(new PrintStream(new OutputStream() {
+            @Override
+            public void write(int arg0) throws IOException {
+                // keep empty
+            }
+        }));*/
+        
         System.out.println("Hello World!");
         //061304800
         //000060514

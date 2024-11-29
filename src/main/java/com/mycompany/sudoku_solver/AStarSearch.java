@@ -42,9 +42,9 @@ public class AStarSearch {
             expanded = expandNode();
             count++;
             if (count % 10000 == 0) 
-                System.out.println(count + "");
+                System.err.println(count + "");
             if (expanded != null)
-                System.out.println(expanded.boardToString());
+                System.err.println("expanded:" + expanded.boardToString());
             
             if (expanded == null)
                 continue;
@@ -59,7 +59,14 @@ public class AStarSearch {
         if (queue.isEmpty())
             return null;
         
+        System.err.println("queue size before remove: " + queue.size());
         Board expanded = queue.remove();
+        System.err.println("queue size after remove: " + queue.size());
+        System.err.println("removed: " + expanded.boardToString());
+        
+        /*if (expanded.boardToString().equals("961394899999969514429985399999753982999998993999499991994531979259999999919897945")) {
+            expanded = expanded;
+        }*/
         
         
         boolean cellExpanded = false;
@@ -116,20 +123,20 @@ public class AStarSearch {
                     
                     for (int i6 = 0; i6 < 9; i6++) {
                         Board clone = current.cloneBoard();
-                        if (clone.cells[row][col].possibilities[i6] && 
-                                !clone.cells[row][col].cant_be[i6]) {
+                        if (clone.cells[row][col].possibilities[i6]) {
                             
                             clone.cells[row][col].value = i6 + 1;
                             clone.cells[row][col].cant_be[i6] = true;
                             clone.cells[row][col].possibilities[i6] = false;
                             
 
-                            System.out.println("value: " + clone.cells[row][col].value);
-                            System.out.println("row: " + row);
-                            System.out.println("col: " + col);
+                            System.err.println("value: " + clone.cells[row][col].value);
+                            System.err.println("row: " + row);
+                            System.err.println("col: " + col);
                             
-                            //clone.removePossibilities();
+                            clone.removePossibilities();
                             queue.add(clone);
+                            System.err.println("added: " + clone.boardToString());
                             cellExpanded = true;
                         }
                     }
